@@ -10,7 +10,7 @@ body::before {
   
   /* 背景图片路径 - 对应你的 assets/img/星月之城.jpg */
   /* 注意：Jekyll 生成站点后路径通常是 /assets/img/... */
-  background-image: url('/assets/img/星月之城.jpg'); 
+  background-image: url('/assets/img/暗部.jpg'); 
   
   background-repeat: no-repeat;
   background-position: center center;
