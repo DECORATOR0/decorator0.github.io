@@ -1,4 +1,4 @@
-/* 1. 设置全局背景图 */
+/* 1. 设置背景层 */
 body::before {
   content: "";
   position: fixed;
@@ -8,37 +8,41 @@ body::before {
   height: 100vh;
   z-index: -1;
   
-  background-image: url('/assets/img/暗部.jpg'); 
+  background-image: url('/assets/img/electro master.jpeg'); 
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
 
-  /* 这里只做整体亮度压暗，不模糊，保留背景的帅气 */
-  -webkit-filter: brightness(0.8); 
-  filter: brightness(0.8);
-}
+  /* --- 核心修改区 START --- */
 
-/* 2. 核心修复：调整内容区的颜色和特效 */
-:root {
-  /* --- 日间模式 (Light Mode) --- */
-  /* 你的截图目前是这个模式 */
-  /* 既然字是黑的，底必须够白！改成 0.92 左右 */
-  --main-bg: rgba(255, 255, 255, 0.92) !important; 
+  /* 1. 彻底去掉 opacity (不要透明，否则会透出底下的白色) */
+  opacity: 1; 
+
+  /* 2. 调整模糊度: 0px 是原图，2px 是微糊，5px 是大糊 */
+  /* 建议改成 0px 或者 2px */
+  -webkit-filter: blur(0px) brightness(0.7); 
+  filter: blur(0px) brightness(0.7);
   
-  /* 侧边栏保持深色 */
-  --sidebar-bg: rgba(24, 25, 26, 0.85) !important;
+  /* 说明：brightness(0.7) 表示把亮度压到 70%，
+     这样既不会泛白，又能保证文字看得清 */
+     
+  /* --- 核心修改区 END --- */
 }
 
-/* --- 夜间模式 (Dark Mode) --- */
+/* 2. 调整中间内容区域的透明度 */
+:root {
+  /* 侧边栏：保持深色半透明 */
+  --sidebar-bg: rgba(24, 25, 26, 0.85) !important; 
+  
+  /* 主内容区 (关键！) */
+  /* 你现在的截图是亮色模式(Light Mode)，背景是大面积白色 */
+  /* 我们把它调得更透一点，让背景能显露出来 */
+  --main-bg: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* 3. 针对暗色模式 (Dark Mode) 的微调 */
+/* 当你点击左下角月亮切换到深色模式时生效 */
 [data-mode="dark"] {
-  /* 夜间模式字是白的，底色稍微透一点没关系，但也建议深一点 */
-  --main-bg: rgba(27, 27, 30, 0.85) !important;
-  --sidebar-bg: rgba(29, 31, 33, 0.85) !important;
-}
-
-/* 3. 【大招】给所有内容框加“毛玻璃”磨砂效果 */
-/* 这样文字底下的背景会自动变糊，无论背景多花，字都清晰 */
-#main-wrapper, #sidebar, .topbar-wrapper {
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  --sidebar-bg: rgba(29, 31, 33, 0.8) !important;
+  --main-bg: rgba(27, 27, 30, 0.6) !important; /* 深色模式下可以让内容区更透 */
 }
