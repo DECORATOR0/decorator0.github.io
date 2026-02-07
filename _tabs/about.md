@@ -4,5 +4,6 @@ icon: fas fa-info-circle
 order: 4
 ---
 
-> Add Markdown syntax content to file `_tabs/about.md`{: .filepath } and it will show up on this page.
-{: .prompt-tip }
+# About
+
+I am a third-year computer science student from Harbin Institute of Technology, Shenzhen. My hobbies include watching anime, listening to music, reading books, playing video games, and playing table tennis.
