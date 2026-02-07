@@ -1,20 +1,37 @@
-/* 背景图 + 模糊 */
+/* 设置背景层 */
 body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: url("/assets/img/星月之城.jpg") center/cover no-repeat fixed;
-    filter: blur(10px);          /* 模糊度 */
-    transform: scale(1.05);
-    z-index: -2;
-  }
+  content: "";
+  position: fixed; /* 固定背景，滚动页面时背景不动 */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1; /* 放在内容的最底层 */
   
-  /* 遮罩层：调透明度/暗度 */
-  body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.55);  /* 0~1，越大越暗 */
-    z-index: -1;
-  }
+  /* 背景图片路径 - 对应你的 assets/img/星月之城.jpg */
+  /* 注意：Jekyll 生成站点后路径通常是 /assets/img/... */
+  background-image: url('/assets/img/星月之城.jpg'); 
   
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover; /* 让图片铺满屏幕 */
+
+  /* 调整效果 */
+  -webkit-filter: blur(5px); /* 模糊度，数字越大越糊 */
+  filter: blur(5px);
+  
+  opacity: 0.6; /* 透明度，0.1-1.0，越小越淡 */
+}
+
+/* 这是一个可选优化：让 Chirpy 的侧边栏和主内容区稍微透明一点，
+ 否则背景图可能会被原本的白色/深色背景完全挡住 */
+:root {
+  --sidebar-bg: rgba(24, 25, 26, 0.8) !important; /* 侧边栏半透明 */
+  --main-bg: rgba(255, 255, 255, 0.9) !important; /* 内容区半透明 */
+}
+
+/* 针对暗色模式的适配 (Dark Mode) */
+[data-mode="dark"] {
+  --sidebar-bg: rgba(29, 31, 33, 0.8) !important;
+  --main-bg: rgba(27, 27, 30, 0.85) !important;
+}

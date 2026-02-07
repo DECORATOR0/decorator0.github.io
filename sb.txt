@@ -29,8 +29,12 @@ categories.md
 tags.md
 
 ./assets:
+css/
 img/
 lib/
+
+./assets/css:
+bg.css
 
 ./assets/img:
 美琴.jpg
