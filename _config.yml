@@ -16,7 +16,7 @@ timezone:
 
 title: xsy blog # the main title
 
-tagline: my blog 26.2.7 # it will display as the subtitle
+tagline: a simple blog # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
   A minimal, responsive and feature-rich Jekyll theme for technical writing.
